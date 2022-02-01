@@ -82,22 +82,16 @@ public with sharing class LimitsMonitor_Controller {
     }
     @AuraEnabled
     public static List<ObjectLimitData> getObjectLimit(String apiName){
-        
         HTTP h = new HTTP();
         HTTPRequest req = new HTTPRequest();
         HttpResponse resp = new HttpResponse();
-        
         req.setMethod('GET');
         req.setEndpoint('callout:LimMon_NC/services/data/v45.0/tooling/query/?q=SELECT+Type,+Label,+Remaining,+Max,+EntityDefinitionid+FROM+EntityLimit+where+EntityDefinitionid=\''+apiName+'\'');
         resp = h.send(req);
-        
-        System.debug(resp.getBody());
-        
         if(resp.getStatusCode() == 200 ){
             ObjectLimitResponse limits = (ObjectLimitResponse)JSON.deserialize(resp.getBody(), ObjectLimitResponse.class);
             return limits.records;
         }
-       
         return null;
     }
     @AuraEnabled
