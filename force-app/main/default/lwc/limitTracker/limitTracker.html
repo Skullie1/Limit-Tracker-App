@@ -1,0 +1,71 @@
+<template>
+    <lightning-card title="Org Limit Overview" >
+        <div class="slds-clearfix">
+        <lightning-layout class="slds-float_left">
+            <lightning-layout-item padding="around-small">
+                <lightning-button-group>
+                    <lightning-button data-id="startButton" label={buttonLabel} title={buttonAction} onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+                    <lightning-button-menu alternative-text="Show menu" variant="border-filled">
+                        <lightning-menu-item label="Resfresh/Reset" value="reset" onclick={reset}></lightning-menu-item>
+                        <lightning-menu-item label="Complete" value="complete" onclick={handleComplete}></lightning-menu-item>
+                    </lightning-button-menu>
+                </lightning-button-group>
+        </lightning-layout-item>
+
+        <lightning-layout-item padding="around-small">
+        <p class="slds-text-heading_small">Start Time:<br/>
+            <lightning-formatted-date-time value={startTime}  year="numeric" month="numeric" day="numeric" hour="2-digit" minute="2-digit" second="2-digit"  hour12="true"></lightning-formatted-date-time></p>
+        </lightning-layout-item>
+
+        <lightning-layout-item padding="around-small">
+            <p class="slds-text-heading_small">Stop Time:<br/>
+                   <lightning-formatted-date-time value={stopTime}  year="numeric" month="numeric" day="numeric" hour="2-digit" minute="2-digit" second="2-digit"  hour12="true"></lightning-formatted-date-time></p>
+            </lightning-layout-item>
+        </lightning-layout>
+        <lightning-layout class="slds-float_right">
+
+            <lightning-layout-item padding="around-small">
+            <div >
+                <lightning-icon icon-name="action:close" alternative-text="high risk image" title="Set high risk level" size="x-small"></lightning-icon>
+            </div>
+            </lightning-layout-item>
+            <lightning-layout-item class="slds-size_5-of-12 slds-m-bottom_xxx-small">
+                <div class="slds-size_5-of-12" >
+                    <lightning-combobox
+                        name="highWarning"
+                        label="limit"
+                        value=".4"
+                        placeholder=""
+                        options={warningLevels}
+                        onchange={handleWarningLevelChange}
+                  ></lightning-combobox>
+                </div>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                <div >
+                    <lightning-icon icon-name="action:priority" alternative-text="Medium risk image" title="Set medium risk level" size="x-small"></lightning-icon>
+                </div>
+                </lightning-layout-item>
+                <lightning-layout-item class="slds-size_5-of-12 slds-m-bottom_xxx-small" style="padding-right: 40px;">
+                    <div class="slds-size_5-of-12">
+                        <lightning-combobox
+                            name="mediumWarning"
+                            label="limit"
+                            value=".04"
+                            options={warningLevels}
+                            onchange={handleWarningLevelMedChange}
+                      ></lightning-combobox>
+                    </div>
+                </lightning-layout-item>
+        </lightning-layout>
+    </div>
+        <div style="height: 500px" > 
+        <lightning-datatable
+            key-field="id"
+            data={_data}
+            columns={columns}
+            hide-checkbox-column>
+        </lightning-datatable>
+        </div>
+    </lightning-card>
+</template>

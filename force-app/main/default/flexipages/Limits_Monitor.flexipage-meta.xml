@@ -5,22 +5,34 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>orgLimits</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>limitTracker</componentName>
+                <identifier>c_limitTracker1</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>region2</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>objectLimits</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>standardLinks</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>scheduleAlert</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>objectLimits</componentName>
+                <identifier>objectLimits</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>standardLinks</componentName>
+                <identifier>standardLinks</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>scheduleAlert</componentName>
+                <identifier>scheduleAlert</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>region3</name>
         <type>Region</type>
     </flexiPageRegions>
