@@ -29,13 +29,11 @@
                 <lightning-icon icon-name="action:close" alternative-text="high risk image" title="Set high risk level" size="x-small"></lightning-icon>
             </div>
             </lightning-layout-item>
-            <lightning-layout-item class="slds-size_5-of-12 slds-m-bottom_xxx-small">
-                <div class="slds-size_5-of-12" >
+            <lightning-layout-item class="slds-m-bottom_xxx-small">
+                <div  >
                     <lightning-combobox
                         name="highWarning"
                         label="limit"
-                        value=".4"
-                        placeholder=""
                         options={warningLevels}
                         onchange={handleWarningLevelChange}
                   ></lightning-combobox>
@@ -46,12 +44,11 @@
                     <lightning-icon icon-name="action:priority" alternative-text="Medium risk image" title="Set medium risk level" size="x-small"></lightning-icon>
                 </div>
                 </lightning-layout-item>
-                <lightning-layout-item class="slds-size_5-of-12 slds-m-bottom_xxx-small" style="padding-right: 40px;">
-                    <div class="slds-size_5-of-12">
+                <lightning-layout-item class="slds-m-bottom_xxx-small" style="padding-right: 40px;">
+                    <div >
                         <lightning-combobox
                             name="mediumWarning"
                             label="limit"
-                            value=".04"
                             options={warningLevels}
                             onchange={handleWarningLevelMedChange}
                       ></lightning-combobox>
@@ -59,7 +56,7 @@
                 </lightning-layout-item>
         </lightning-layout>
     </div>
-        <div style="height: 500px" > 
+        <div style="height: 500px" >
         <lightning-datatable
             key-field="id"
             data={_data}

@@ -36,16 +36,17 @@ export default class LimitTracker extends LightningElement {
     }
     get warningLevels(){
         return [
-            { label: '.03', value: '.03' },
-            { label: '.04', value: '.04' },
-            { label: '.2', value: '.2' },
-            { label: '.3', value: '.3' },
-            { label: '.4', value: '.4' },
-            { label: '.5', value: '.5' },
-            { label: '.6', value: '.6' },
-            { label: '.7', value: '.7' },
-            { label: '.8', value: '.8' },
-            { label: '.9', value: '.9' },
+            { label: '03%', value: '.03' },
+            { label: '04%', value: '.04' },
+            { label: '10%', value: '.1' },
+            { label: '20%', value: '.2' },
+            { label: '30%', value: '.3' },
+            { label: '40%', value: '.4' },
+            { label: '50%', value: '.5' },
+            { label: '60%', value: '.6' },
+            { label: '70%', value: '.7' },
+            { label: '80%', value: '.8' },
+            { label: '90%', value: '.9' },
         ]
     }
     get Limits(){
