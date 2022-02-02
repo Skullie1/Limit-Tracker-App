@@ -20,14 +20,14 @@ export default class LimitTracker extends LightningElement {
     startTime;
     stopTime;
 
-    _highWarningDec = .4;
+    _highWarningDec = '.4';
     get highWarningDec(){
         return this._highWarningDec;
     }
     set highWarningDec(value){
         this._highWarningDec = value;
     }
-    _medWarningDec = .04;
+    _medWarningDec = '.04';
     get medWarningDec(){
         return this._medWarningDec;
     }
@@ -113,7 +113,6 @@ export default class LimitTracker extends LightningElement {
                       }else{
                         iconValue = 'action:approval';
                       }
-//                      iconValue = (percentUsedValue > this.highWarningDec)?'action:close':(percentUsedValue >this.medWarningDec)?'action:priority':'action:approval';
                       returnData.push({
                           name: parsedData[prop].name,
                           current : parsedData[prop].current,
@@ -133,6 +132,8 @@ export default class LimitTracker extends LightningElement {
                 this.sortDataList();
                 this.startTime = new Date();
                 this.dataObj.startTime = this.startTime;
+                this.template.querySelector('[data-id=mediumWarning').value = this.medWarningDec;
+                this.template.querySelector('[data-id=highWarning').value = this.highWarningDec;
              });
     }
     updateDataTable(newDataLst){
