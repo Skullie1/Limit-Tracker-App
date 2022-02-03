@@ -170,7 +170,8 @@ export default class LimitTracker extends LightningElement {
                 }
             }
         }
-        this.data = this.dataObj;
+        this.data = this.dataObj.sort((a, b) =>
+        (a.name < b.name) ? 1 : (a.name === b.name) ? ((a.size < b.size) ? 1 : -1) : -1 );;
     }
     updateColumns(){
          this.columns = [
