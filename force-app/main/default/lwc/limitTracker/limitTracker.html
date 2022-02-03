@@ -13,19 +13,17 @@
         </lightning-layout-item>
 
         <lightning-layout-item padding="around-small">
-        <p class="slds-text-heading_small">Start Time:<br/>
+        <p class="slds-text-heading_xsmall">Start Time:<br/>
             <lightning-formatted-date-time value={startTime}  year="numeric" month="numeric" day="numeric" hour="2-digit" minute="2-digit" second="2-digit"  hour12="true"></lightning-formatted-date-time></p>
         </lightning-layout-item>
-
         <lightning-layout-item padding="around-small">
-            <p class="slds-text-heading_small">Stop Time:<br/>
-                   <lightning-formatted-date-time value={stopTime}  year="numeric" month="numeric" day="numeric" hour="2-digit" minute="2-digit" second="2-digit"  hour12="true"></lightning-formatted-date-time></p>
+            <p class="slds-text-heading_xsmall">Stop Time:<br/>
+                <lightning-formatted-date-time value={stopTime}  year="numeric" month="numeric" day="numeric" hour="2-digit" minute="2-digit" second="2-digit"  hour12="true"></lightning-formatted-date-time></p>
             </lightning-layout-item>
         </lightning-layout>
         <lightning-layout class="slds-float_right">
-
             <lightning-layout-item padding="around-small">
-            <div >
+            <div style="margin-top: 8px;">
                 <lightning-icon icon-name="action:close" alternative-text="high risk image" title="Set high risk level" size="x-small"></lightning-icon>
             </div>
             </lightning-layout-item>
@@ -41,7 +39,7 @@
                 </div>
             </lightning-layout-item>
             <lightning-layout-item padding="around-small">
-                <div >
+                <div style="margin-top: 8px;">
                     <lightning-icon icon-name="action:priority" alternative-text="Medium risk image" title="Set medium risk level" size="x-small"></lightning-icon>
                 </div>
                 </lightning-layout-item>
