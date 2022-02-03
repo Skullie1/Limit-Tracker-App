@@ -122,7 +122,8 @@ export default class LimitTracker extends LightningElement {
                       });
                   }
 
-                  this.dataObj = returnData;
+                  this.dataObj = returnData.sort((a, b) =>
+                  (a.name < b.name) ? 1 : (a.name === b.name) ? ((a.size < b.size) ? 1 : -1) : -1 );;
                   this._data = returnData.sort((a, b) =>
                   (a.percentUsed < b.percentUsed) ? 1 : (a.percentUsed === b.percentUsed) ? ((a.size < b.size) ? 1 : -1) : -1 );
               })
@@ -171,7 +172,7 @@ export default class LimitTracker extends LightningElement {
             }
         }
         this.data = this.dataObj.sort((a, b) =>
-        (a.name < b.name) ? 1 : (a.name === b.name) ? ((a.size < b.size) ? 1 : -1) : -1 );;
+        (a.name < b.name) ? 1 : (a.name === b.name) ? ((a.size < b.size) ? 1 : -1) : -1 );
     }
     updateColumns(){
          this.columns = [
