@@ -1,39 +1,5 @@
 public with sharing class LimitsMonitor_Controller {
-    private static Map<String, String> analyticalLabelMap = new Map<String, String>{
-        'AnalyticsExternalDataSizeMB'=>'Analytics External Datasize MB',
-        'ConcurrentAsyncGetReportInstances'=>'Concurrent Async Get Report Instances',
-        'ConcurrentSyncReportRuns'=>'Concurrent Sync Report Runs',
-        'DailyAnalyticsDataflowJobExecutions'=> 'Daily Analytics Dataflow Job Executions',
-        'DailyAnalyticsUploadedFilesSizeMB'=> 'Daily Analytics Uploaded Files Size MB',
-        'HourlyAsyncReportRuns' => 'Hourly Async Report Runs',
-        'HourlyDashboardRefreshes' => 'Hourly Dashboard Refreshes',
-        'HourlyDashboardResults' => 'Hourly Dashboard Results',
-        'HourlyDashboardStatuses' => 'Hourly Dashboard Statuses',
-        'HourlySyncReportRuns'=> 'Hourly Sync Report Runs'
-    };
-    private static Map<String, String> streamingLabelMap = new Map<String, String>{
-        'DailyDurableGenericStreamingApiEvents'=> 'Daily Durable Generic Streaming API Events',
-        'DailyDurableStreamingApiEvents'=>'Daily Durable Streaming API Events',
-        'DailyGenericStreamingApiEvents'=>'Daily Generic Streaming API Events',
-        'DailyStandardVolumePlatformEvents'=> 'Daily Standard Volume Platform Events',
-        'DailyStreamingApiEvents' => 'Daily Streaming API Events',
-        'DurableStreamingApiConcurrentClients' => 'Durable Streaming API Concurrent Clients',
-        'MonthlyPlatformEvents' => 'Monthly Platform Events',
-        'StreamingApiConcurrentClients' => 'Streaming API Concurrent Clients'
-    };
-    private static Map<String, String> otherLabelMap = new Map<String, String>{
-        'HourlyLongTermIdMapping'=> 'Hourly Long Term Id Mapping',
-        'HourlyODataCallout'=>'Hourly OData Callout',
-        'HourlyShortTermIdMapping'=>'Hourly Short Term Id Mapping',
-        'ActiveScratchOrgs'=> 'Active Scratch Orgs',
-        'DailyAsyncApexExecutions' => 'Daily Async Apex Executions'
-    };
-    private static Map<String, String> workflowLabelMap = new Map<String, String>{
-        'DailyWorkflowEmails'=> 'Daily Workflow Emails',
-        'HourlyTimeBasedWorkflow'=>'Hourly Time Based Workflow',
-        'MassEmail'=>'Mass Email',
-        'SingleEmail'=> 'Single Email'        
-    };
+
     public static Map<String, OrgLimit> getThisOrgLimits(){
          Map<String, OrgLimit> lm = new Map<String, OrgLimit>();
          if(!Test.isRunningTest()){
@@ -60,26 +26,7 @@ public with sharing class LimitsMonitor_Controller {
             system.schedule('LimitsMonitorSchedule', schedStr, SC);
         }
     }
-    @AuraEnabled(cacheable=true)
-    public static AllLimits getOrgLimits(){
-        //Make sure your Salesforce instance URL is added in remote site settings
-        Map<String, OrgLimit> limitsMap = getThisOrgLimits();
-        AllLimits allLimits = new AllLimits();
 
-        allLimits.analyticsLimits = getCategorizedData(limitsMap, analyticalLabelMap);
-        allLimits.streamingLimits = getCategorizedData(limitsMap, streamingLabelMap);
-        allLimits.workflowLimits = getCategorizedData(limitsMap, workflowLabelMap);
-        allLimits.otherLimits = getCategorizedData(limitsMap, otherLabelMap);
-        
-        if(!limitsMap.isEmpty()){
-            allLimits.dailyApiLimit = new LimitData(limitsMap.get('DailyApiRequests'), 'Daily API Request', 0, 0);
-            allLimits.dailyBulkApiLimit = new LimitData(limitsMap.get('DailyBulkApiBatches'), 'Daily Bulk API Batches', 0, 0);
-            allLimits.storageLimit = new LimitData(limitsMap.get('DataStorageMB'), 'Data Storage MB', 0, 0);
-            allLimits.fileStorageLimit = new LimitData(limitsMap.get('FileStorageMB'), 'File Storage MB', 0, 0);
-        }
-
-        return allLimits;
-    }
     @AuraEnabled
     public static List<ObjectLimitData> getObjectLimit(String apiName){
         
@@ -101,9 +48,27 @@ public with sharing class LimitsMonitor_Controller {
         return null;
     }
     @AuraEnabled
-    public static string getOrgERD(){
-        ERD__mdt ERD = [SELECT Entity_List__c FROM ERD__mdt WHERE MasterLabel = 'Default'];
-        return Json.serialize(ERD?.Entity_List__c);
+    public static string getEntitiesForInput(){
+        // 
+        Map<String, Schema.SObjectType> gd = Schema.getGlobalDescribe();
+        list<Schema.SObjectType> targetList = new list<Schema.SObjectType>();
+        //
+        list<String> returnList = new list<String>();
+        //
+        for(Schema.SObjectType d : gd.values())
+        {
+            Schema.DescribeSObjectResult ds = d.getDescribe();
+            //sorting out entities
+            if(ds.isCustom() ||
+            !ds.getName().contains('.')&& 
+            !ds.getName().contains('__ChangeEvent')&&
+            !ds.getName().contains('__mtd')&&
+            !ds.getName().contains('__Share')&&
+            !ds.getName().contains('__History')){
+                returnList.add(ds.getName());
+            }
+        }
+        return JSON.serialize(returnList);
     }
     public class AllLimits {
         @AuraEnabled

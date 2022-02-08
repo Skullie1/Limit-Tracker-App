@@ -28,14 +28,13 @@
 		<members>installHelp</members>
 		<members>limitTracker</members>
 		<members>objectLimits</members>
-		<members>orgLimits</members>
 		<members>scheduleAlert</members>
 		<members>standardLinks</members>
 		<name>LightningComponentBundle</name>
 	</types>
 	<types>
-		<members>D3JS</members>
-		<name>StaticResource</name>
+		<members>Limits_Monitor</members>
+		<name>PermissionSet</name>
 	</types>
 	<version>53.0</version>
 </Package>

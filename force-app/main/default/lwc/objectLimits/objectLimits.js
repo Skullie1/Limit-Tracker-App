@@ -1,6 +1,6 @@
 import { LightningElement, track } from 'lwc';
 import getObjectLimit from '@salesforce/apex/LimitsMonitor_Controller.getObjectLimit';
-import getMetaDataForOptions from '@salesforce/apex/DataClassificationReportController.getEntitiesForInput';
+import getMetaDataForOptions from '@salesforce/apex/LimitsMonitor_Controller.getEntitiesForInput';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 const columns = [
