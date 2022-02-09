@@ -11,7 +11,7 @@ private class LimitsMonitor_Test {
     @IsTest
     static void testSchedule(){
 
-        User u = [SELECT id from User where Profile.Name = 'System Administrator' limit 1];
+        User u = [SELECT id from User where Profile.Name = 'System Administrator' and isActive = true limit 1];
         system.runAs(u){
             Test.startTest();
             LimitsMonitor_Controller.scheduleAlert(5.0, '02:00:22:00');
@@ -22,7 +22,7 @@ private class LimitsMonitor_Test {
     @IsTest
     static void testScheduler(){
 
-        User u = [SELECT id from User where Profile.Name = 'System Administrator' limit 1];
+        User u = [SELECT id from User where Profile.Name = 'System Administrator' and isActive = true limit 1];
         system.runAs(u){
             Test.startTest();
             string schedStr = '0 10 10 * * ?';
@@ -32,5 +32,11 @@ private class LimitsMonitor_Test {
             SC.sendEmailAlert(new List<String>{'FileStorageDB'});
         }
 
+    }
+    @isTest
+    public static void testCase00(){
+        LimitTrackerController controller = new LimitTrackerController();
+        string res = LimitsMonitor_Controller.getEntitiesForInput();
+        system.assertNotEquals(null, res);
     }
 }

@@ -7,16 +7,7 @@ public with sharing class LimitsMonitor_Controller {
          }
          return lm;
     }
-    private static List<LimitData> getCategorizedData(Map<String, OrgLimit> limitsMap, Map<String, String> categoryMap){
-        List<LimitData> catData = new List<LimitData>();
-        Integer i=0;
-        for(String key : categoryMap.keySet()){
-            if(limitsMap.containsKey(key)){
-                catData.add(new LimitData(limitsMap.get(key), categoryMap.get(key), i++, 1));
-            }
-        }
-        return catData;
-    }
+
     @AuraEnabled
     public static void scheduleAlert(Decimal percent, string schedTime){
         Time sTime = Time.newInstance(Integer.valueOf(schedTime.split(':')[0]), Integer.valueOf(schedTime.split(':')[1]), 0, 0);
@@ -70,24 +61,7 @@ public with sharing class LimitsMonitor_Controller {
         }
         return JSON.serialize(returnList);
     }
-    public class AllLimits {
-        @AuraEnabled
-        public List<LimitData> analyticsLimits;
-        @AuraEnabled
-        public List<LimitData> streamingLimits;
-        @AuraEnabled
-        public List<LimitData> workflowLimits;
-        @AuraEnabled
-        public List<LimitData> otherLimits;
-        @AuraEnabled
-        public LimitData dailyApiLimit;
-        @AuraEnabled
-        public LimitData dailyBulkApiLimit;
-        @AuraEnabled
-        public LimitData storageLimit;
-        @AuraEnabled
-        public LimitData fileStorageLimit;
-    }
+
     public class ObjectLimitResponse{
         public List<ObjectLimitData> records;
     }
@@ -102,39 +76,5 @@ public with sharing class LimitsMonitor_Controller {
         public Integer Max;
         @AuraEnabled
         public String Label;
-    }
-
-    public class LimitData {
-
-        @AuraEnabled
-        public String name;
-        @AuraEnabled
-        public Integer order;
-        @AuraEnabled
-        public Decimal score;
-        @AuraEnabled
-        public Decimal weight;
-        @AuraEnabled
-        public String label;
-        @AuraEnabled
-        public Decimal max;
-        @AuraEnabled
-        public Decimal consumed;
-        @AuraEnabled
-        public String indication;
-        
-
-        public LimitData(OrgLimit lim, String label, Integer order, Decimal weight){
-            this.name = lim.getName();
-            this.order= order;
-            this.weight = weight;
-            this.label = label;
-            this.max = lim.getLimit();
-            this.consumed = lim.getValue();
-            this.score = (this.max != 0)? (this.consumed)/this.max:1;
-            system.debug(lim.getName());
-            system.debug((this.max - this.consumed));
-            this.indication = (this.max - this.consumed) +  ' / ' + this.max;
-        }
     }
 }
