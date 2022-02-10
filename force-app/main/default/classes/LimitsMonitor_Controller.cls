@@ -12,7 +12,7 @@ public with sharing class LimitsMonitor_Controller {
     public static void scheduleAlert(Decimal percent, string schedTime){
         Time sTime = Time.newInstance(Integer.valueOf(schedTime.split(':')[0]), Integer.valueOf(schedTime.split(':')[1]), 0, 0);
         string schedStr = '0 '+sTime.minute()+' '+sTime.hour()+' * * ?';
-        LimitsMonitor_Scheduler SC = new LimitsMonitor_Scheduler(percent); 
+        LimitsMonitor_Scheduler SC = new LimitsMonitor_Scheduler(percent);
         if(!Test.isRunningTest()){
             system.schedule('LimitsMonitorSchedule', schedStr, SC);
         }
@@ -20,27 +20,27 @@ public with sharing class LimitsMonitor_Controller {
 
     @AuraEnabled
     public static List<ObjectLimitData> getObjectLimit(String apiName){
-        
+
         HTTP h = new HTTP();
         HTTPRequest req = new HTTPRequest();
         HttpResponse resp = new HttpResponse();
-        
+
         req.setMethod('GET');
         req.setEndpoint('callout:LimMon_NC/services/data/v45.0/tooling/query/?q=SELECT+Type,+Label,+Remaining,+Max,+EntityDefinitionid+FROM+EntityLimit+where+EntityDefinitionid=\''+apiName+'\'');
         resp = h.send(req);
-        
+
         System.debug(resp.getBody());
-        
+
         if(resp.getStatusCode() == 200 ){
             ObjectLimitResponse limits = (ObjectLimitResponse)JSON.deserialize(resp.getBody(), ObjectLimitResponse.class);
             return limits.records;
         }
-       
+
         return null;
     }
     @AuraEnabled
     public static string getEntitiesForInput(){
-        // 
+        //
         Map<String, Schema.SObjectType> gd = Schema.getGlobalDescribe();
         list<Schema.SObjectType> targetList = new list<Schema.SObjectType>();
         //
@@ -51,7 +51,7 @@ public with sharing class LimitsMonitor_Controller {
             Schema.DescribeSObjectResult ds = d.getDescribe();
             //sorting out entities
             if(ds.isCustom() ||
-            !ds.getName().contains('.')&& 
+            !ds.getName().contains('.')&&
             !ds.getName().contains('__ChangeEvent')&&
             !ds.getName().contains('__mtd')&&
             !ds.getName().contains('__Share')&&
