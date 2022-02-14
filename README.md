@@ -4,12 +4,13 @@ big shout out to https://github.com/ritikadhandia
   <li>https://github.com/ritikadhandia</li>
   <li> https://github.com/tepp0f3l</li>
 </l>
-
+<br>
 Thank you for the starting point, Barrowed some code from https://github.com/SalesforceLabs/LimitsMonitor.
-
-
-the main lwc was not functioning so i swapped it with an enhanced datatable lwc. 
-also enhanced the object limit component for dynamic entity lookup. 
+<l>
+  <li>Swapped main component that required static js lib and replaced with and enhanced dataTable LWC.</li>
+  <li>Enhanced the object limit component for dynamic entity lookup.</li>
+  <li>Added Permission set for app access</li>
+</l> 
 
 # Salesforce DX Project: Next Steps
 <l>
