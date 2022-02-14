@@ -18,6 +18,14 @@ Thank you for the starting point, Barrowed some code from https://github.com/Sal
   <li>Add permission set Limits_Monitor to user</li>
   <li>In App launcher, navigate to Limits Monitor</li>
 </l>
+<br>
+Features
+<l>
+  <li>Real-time system limit information.</li>
+  <li>Email subscription for daily evaluation.</li>
+  <li>Ability to track API limit changes over time (limitation on time filter).</li>
+  <li>Object Limit information.</li>
+</l>
 
 ![image](https://user-images.githubusercontent.com/83821286/153935057-615f7f75-9dc7-4a5c-9c4c-81cb59658b07.png)
 
