@@ -1,4 +1,12 @@
-Barrowed some code from https://github.com/SalesforceLabs/LimitsMonitor. big shout out to https://github.com/ritikadhandia. Thank you for the starting point
+
+big shout out to https://github.com/ritikadhandia  
+<l>
+  <li>https://github.com/ritikadhandia</li>
+  <li> https://github.com/tepp0f3l</li>
+</l>
+
+Thank you for the starting point, Barrowed some code from https://github.com/SalesforceLabs/LimitsMonitor.
+
 
 the main lwc was not functioning so i swapped it with an enhanced datatable lwc. 
 also enhanced the object limit component for dynamic entity lookup. 
