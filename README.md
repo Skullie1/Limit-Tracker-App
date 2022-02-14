@@ -1,5 +1,5 @@
 
-big shout out to https://github.com/ritikadhandia  
+big shout out to 
 <l>
   <li>https://github.com/ritikadhandia</li>
   <li> https://github.com/tepp0f3l</li>
