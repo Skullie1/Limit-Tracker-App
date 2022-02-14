@@ -15,7 +15,7 @@ Thank you for the starting point, Barrowed some code from https://github.com/Sal
 # Salesforce DX Project: Next Steps
 <l>
   <li>Deploy manifest from repo</li>
-  <li>Add permission set to user</li>
+  <li>Add permission set Limits_Monitor to user</li>
   <li>In App launcher, navigate to Limits Monitor</li>
 </l>
 
