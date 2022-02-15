@@ -5,7 +5,7 @@ big shout out to
   <li> https://github.com/tepp0f3l</li>
 </l>
 <br>
-Thank you for the starting point, Barrowed some code from https://github.com/SalesforceLabs/LimitsMonitor.
+Thank you for the starting point, Barrowed some code (Forked) from https://github.com/SalesforceLabs/LimitsMonitor.
 <l>
   <li>Swapped main component that required static js lib and replaced with and enhanced dataTable LWC.</li>
   <li>Enhanced the object limit component for dynamic entity lookup.</li>
