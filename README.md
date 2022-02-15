@@ -17,6 +17,7 @@ Thank you for the starting point, Barrowed some code (Forked) from https://githu
   <li>Deploy manifest from repo</li>
   <li>Add permission set Limits_Monitor to user</li>
   <li>In App launcher, navigate to Limits Monitor</li>
+  <li>Follow installation steps</li>
 </l>
 <br>
 Features
