@@ -14,7 +14,10 @@ Thank you for the starting point, Barrowed some code (Forked) from https://githu
 
 # Salesforce DX Project: Next Steps
 <l>
-  <li>Deploy manifest from repo</li>
+  <li>Deploy manifest from repo <a href="https://githubsfdeploy.herokuapp.com?owner=Skullie1&repo=https://github.com/Skullie1/Limit-Tracker-App.git&ref=master">
+  <img alt="Deploy to Salesforce"
+       src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
+</a></li>
   <li>Add permission set Limits_Monitor to user</li>
   <li>In App launcher, navigate to Limits Monitor</li>
   <li>Follow installation steps</li>
