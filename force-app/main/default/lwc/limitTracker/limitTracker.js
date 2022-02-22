@@ -7,10 +7,10 @@ const columns = [
         cellAttributes: { iconName: { fieldName: 'dynamicIcon' } },
         initialWidth: 10
     },
-    { label: 'Limit Name', fieldName: 'name'},
-    { label: 'Current Count', fieldName: 'current', cellAttributes: { alignment: 'right' }  },
-    { label: 'Org Limit', fieldName: 'limitForOrg', cellAttributes: { alignment: 'right' }   },
-    { label: 'Percent Used', fieldName: 'percentUsed',type:'percent', cellAttributes: { alignment: 'right' }  },
+    { label: 'Limit Name', fieldName: 'name', sortable: "true"},
+    { label: 'Current Count', fieldName: 'current', cellAttributes: { alignment: 'right' } , sortable: "true" },
+    { label: 'Org Limit', fieldName: 'limitForOrg', cellAttributes: { alignment: 'right' } , sortable: "true"  },
+    { label: 'Percent Used', fieldName: 'percentUsed',type:'percent', cellAttributes: { alignment: 'right' }, sortable: "true"  },
 ];
 
 export default class LimitTracker extends LightningElement {
@@ -185,14 +185,97 @@ export default class LimitTracker extends LightningElement {
                 cellAttributes: { iconName: { fieldName: 'dynamicIcon' } },
                 initialWidth: 10,
             },
-            { label: 'Limit Name', fieldName: 'name' },
-            { label: 'Initial Count', fieldName: 'current', cellAttributes: { alignment: 'right' }  },
-            { label: 'New Count', fieldName: 'newCount' , cellAttributes: { alignment: 'right' }  },
-            { label: 'Difference', fieldName: 'diffrence' , cellAttributes: { alignment: 'right' }  },
-            { label: 'Org Limit', fieldName: 'limitForOrg', cellAttributes: { alignment: 'right' }},
-            { label: 'Percent Change', fieldName: 'percentChange',type:'percent', cellAttributes: { alignment: 'right' }},
-            { label: 'Percent Used', fieldName: 'percentUsed',type:'percent', cellAttributes: { alignment: 'right' }},
+            { label: 'Limit Name', fieldName: 'name', sortable: "true"},
+            { label: 'Initial Count', fieldName: 'current', cellAttributes: { alignment: 'right' }, sortable: "true"  },
+            { label: 'New Count', fieldName: 'newCount' , cellAttributes: { alignment: 'right' }, sortable: "true"  },
+            { label: 'Difference', fieldName: 'diffrence' , cellAttributes: { alignment: 'right' }, sortable: "true"  },
+            { label: 'Org Limit', fieldName: 'limitForOrg', cellAttributes: { alignment: 'right' }, sortable: "true"},
+            { label: 'Percent Change', fieldName: 'percentChange',type:'percent', cellAttributes: { alignment: 'right' }, sortable: "true"},
+            { label: 'Percent Used', fieldName: 'percentUsed',type:'percent', cellAttributes: { alignment: 'right' }, sortable: "true"},
 
         ];
+    }
+
+    @track sortBy;
+    @track sortDirection;
+    doSorting(event) {
+        this.sortBy = event.detail.fieldName;
+        this.sortDirection = event.detail.sortDirection;
+        this.sortData(this.sortBy, this.sortDirection);
+    }
+    sortData(fieldname, direction) {
+        let parseData = JSON.parse(JSON.stringify(this.data));
+        // Return the value stored in the field
+        let keyValue = (a) => {
+            return a[fieldname];
+        };
+        // cheking reverse direction
+        let isReverse = direction === 'asc' ? 1: -1;
+        // sorting data
+        parseData.sort((x, y) => {
+            x = keyValue(x) ? keyValue(x) : ''; // handling null values
+            y = keyValue(y) ? keyValue(y) : '';
+            // sorting values based on direction
+            return isReverse * ((x > y) - (y > x));
+        });
+        this._data = parseData;
+    }
+    handleDownload(){
+        this.downloadCSVFile(this._data,'Org_Limits');
+    };
+    downloadCSVFile(dataobj,fileName) {
+        let rowEnd = '\n';
+        let csvString = '';
+        // this set elminates the duplicates if have any duplicate keys
+        let rowData = new Set();
+
+        // getting keys from data
+        dataobj.forEach(function (record) {
+            Object.keys(record).forEach(function (key) {
+                rowData.add(key);
+            });
+        });
+
+        // Array.from() method returns an Array object from any object with a length property or an iterable object.
+        rowData = Array.from(rowData);
+        // splitting using ','
+        csvString += rowData.join(',');
+        csvString += rowEnd;
+
+        // main for loop to get the data based on key value
+        for(let i=0; i < dataobj.length; i++){
+            let colValue = 0;
+
+            // validating keys in data
+            for(let key in rowData) {
+                if(rowData.hasOwnProperty(key) && key) {
+                    // Key value
+                    // Ex: Id, Name
+                    let rowKey = rowData[key];
+                    // add , after every value except the first.
+                    if(colValue > 0 ){
+                        csvString += ',';
+                    }
+                    // If the column is undefined, it as blank in the CSV file.
+                    let value = dataobj[i][rowKey] === undefined ? '' : dataobj[i][rowKey];
+                    csvString += '"'+ value +'"';
+                    colValue++;
+                }
+            }
+            csvString += rowEnd;
+        }
+
+        // Creating anchor element to download
+        let downloadElement = document.createElement('a');
+
+        // This  encodeURI encodes special characters, except: , / ? : @ & = + $ # (Use encodeURIComponent() to encode these characters).
+        downloadElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvString);
+        downloadElement.target = '_self';
+        // CSV File Name
+        downloadElement.download = fileName+Date.now()+'.csv';
+        // below statement is required if you are using firefox browser
+        document.body.appendChild(downloadElement);
+        // click() Javascript function to download CSV file
+        downloadElement.click();
     }
 }
