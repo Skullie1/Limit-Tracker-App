@@ -34,6 +34,7 @@ Features
   <li>Email subscription for daily evaluation.</li>
   <li>Ability to track API limit changes over time (limitation on time filter).</li>
   <li>Object Limit information.</li>
+  <li>Export of org limit data</li>
 </l>
 
 
