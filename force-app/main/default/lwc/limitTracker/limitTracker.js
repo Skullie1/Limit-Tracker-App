@@ -183,7 +183,7 @@ export default class LimitTracker extends LightningElement {
                 initialWidth: 10,
             },
             { label: 'Limit Name', fieldName: 'name' },
-            { label: 'Initail Count', fieldName: 'current', cellAttributes: { alignment: 'right' }  },
+            { label: 'Initial Count', fieldName: 'current', cellAttributes: { alignment: 'right' }  },
             { label: 'New Count', fieldName: 'newCount' , cellAttributes: { alignment: 'right' }  },
             { label: 'Difference', fieldName: 'diffrence' , cellAttributes: { alignment: 'right' }  },
             { label: 'Org Limit', fieldName: 'limitForOrg', cellAttributes: { alignment: 'right' }},
