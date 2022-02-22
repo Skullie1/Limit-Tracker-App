@@ -148,7 +148,10 @@ export default class LimitTracker extends LightningElement {
         (a.percentUsed < b.percentUsed) ? 1 : (a.percentUsed === b.percentUsed) ? ((a.size < b.size) ? 1 : -1) : -1 );
     }
     reset(){
-        eval("$A.get('e.force:refreshView').fire();");
+        //eval("$A.get('e.force:refreshView').fire();");
+        this.columns = columns;
+
+        this.connectedCallback();
     }
     updateDataTableData(newData){
         let percentUsedValue, iconValue, diffrence,percentChange,percentUsed;
