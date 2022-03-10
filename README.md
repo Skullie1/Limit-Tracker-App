@@ -19,7 +19,7 @@ Thank you for the starting point, used some code from https://github.com/Salesfo
 <br>
 # Salesforce DX Project: Next Steps
 <l>
-  <li>Deploy manifest from repo <a href="https://githubsfdeploy.herokuapp.com?owner=Skullie1&repo=https://github.com/Skullie1/Limit-Tracker-App.git&ref=master">
+  <li>Deploy manifest from repo <a href="https://githubsfdeploy.herokuapp.com">
   <img alt="Deploy to Salesforce"
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
 </a></li>
