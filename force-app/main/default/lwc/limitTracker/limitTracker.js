@@ -152,6 +152,8 @@ export default class LimitTracker extends LightningElement {
         let button = this.template.querySelector('[data-id="startButton"');
         button.label = 'Start tracking';
         button.disabled = false;
+        this.stopTime = '';
+
         this.columns = columns;
 
         this.connectedCallback();
