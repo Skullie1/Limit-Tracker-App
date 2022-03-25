@@ -24,9 +24,12 @@ public with sharing class LimitsMonitor_Controller {
         HTTP h = new HTTP();
         HTTPRequest req = new HTTPRequest();
         HttpResponse resp = new HttpResponse();
+		String queryStr = 'SELECT Type,Label,Remaining,Max,EntityDefinitionid FROM EntityLimit WHERE EntityDefinitionid =\''+apiName+'\'';
+        String ENDPOINT = 'callout:LimMon_NC/services/data/v45.0/tooling/';
+        String toolingq = EncodingUtil.urlEncode(queryStr, 'UTF-8');
 
         req.setMethod('GET');
-        req.setEndpoint('callout:LimMon_NC/services/data/v45.0/tooling/query/?q=SELECT+Type,+Label,+Remaining,+Max,+EntityDefinitionid+FROM+EntityLimit+where+EntityDefinitionid=\''+apiName+'\'');
+        req.setEndpoint(ENDPOINT+'query/?q='+toolingq);
         resp = h.send(req);
 
         System.debug(resp.getBody());
