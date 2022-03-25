@@ -5,16 +5,21 @@ big shout out to
   <li> https://github.com/tepp0f3l</li>
 </l>
 <br>
-Thank you for the starting point, Barrowed some code (Forked) from https://github.com/SalesforceLabs/LimitsMonitor.
+Thank you for the starting point, used some code from https://github.com/SalesforceLabs/LimitsMonitor.
 <l>
   <li>Swapped main component that required static js lib and replaced with and enhanced dataTable LWC.</li>
   <li>Enhanced the object limit component for dynamic entity lookup.</li>
   <li>Added Permission set for app access</li>
 </l> 
 
+<br>
+
+![image](https://user-images.githubusercontent.com/83821286/155172571-4dc55ee8-4c6e-440f-b3bd-bdd25e4bc879.png)
+
+<br>
 # Salesforce DX Project: Next Steps
 <l>
-  <li>Deploy manifest from repo <a href="https://githubsfdeploy.herokuapp.com?owner=Skullie1&repo=https://github.com/Skullie1/Limit-Tracker-App.git&ref=master">
+  <li>Deploy manifest from repo <a href="https://githubsfdeploy.herokuapp.com">
   <img alt="Deploy to Salesforce"
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
 </a></li>
@@ -29,9 +34,9 @@ Features
   <li>Email subscription for daily evaluation.</li>
   <li>Ability to track API limit changes over time (limitation on time filter).</li>
   <li>Object Limit information.</li>
+  <li>Export of org limit data</li>
 </l>
 
-![image](https://user-images.githubusercontent.com/83821286/153935057-615f7f75-9dc7-4a5c-9c4c-81cb59658b07.png)
 
 
 
