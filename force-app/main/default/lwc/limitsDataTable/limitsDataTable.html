@@ -4,10 +4,9 @@
         <lightning-layout class="slds-float_left">
             <lightning-layout-item padding="around-small">
                 <lightning-button-group>
-                    <lightning-button data-id="startButton" label={buttonLabel} title={buttonAction} onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+                    <lightning-button data-id="startButton" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
                     <lightning-button-menu alternative-text="Show menu" variant="border-filled">
-                        <lightning-menu-item label="Resfresh/Reset" value="reset" onclick={reset}></lightning-menu-item>
-                        <lightning-menu-item label="Complete" value="complete" onclick={handleComplete}></lightning-menu-item>
+                        <lightning-menu-item data-id="completeBtn" label="Complete" value="complete" onclick={handleComplete}></lightning-menu-item>
                         <lightning-menu-item label="Export CSV" icon-name="utility:download" value="downLoad" onclick={handleDownload}></lightning-menu-item>
                     </lightning-button-menu>
                 </lightning-button-group>
@@ -32,6 +31,7 @@
                     <lightning-combobox
                         data-id="highWarning"
                         name="highWarning"
+                        value={highWarningDec}
                         label="limit"
                         options={warningLevels}
                         onchange={handleWarningLevelChange}
@@ -49,6 +49,7 @@
                             data-id="mediumWarning"
                             name="mediumWarning"
                             label="limit"
+                            value={medWarningDec}
                             options={warningLevels}
                             onchange={handleWarningLevelMedChange}
                       ></lightning-combobox>
@@ -56,16 +57,16 @@
                 </lightning-layout-item>
         </lightning-layout>
     </div>
-        <div style="height: 500px" >
+    <div style="height: 500px" >
         <lightning-datatable
             key-field="id"
-            data={_data}
+            data={data}
             columns={columns}
             sorted-by={sortBy}
             sorted-direction={sortDirection}
             onsort={doSorting}
             hide-checkbox-column>
         </lightning-datatable>
-        </div>
+    </div>
     </lightning-card>
 </template>

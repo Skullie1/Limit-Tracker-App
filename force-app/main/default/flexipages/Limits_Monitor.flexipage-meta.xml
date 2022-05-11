@@ -7,8 +7,8 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>limitTracker</componentName>
-                <identifier>c_limitTracker1</identifier>
+                <componentName>limitsDataTable</componentName>
+                <identifier>c_limitsDataTable1</identifier>
             </componentInstance>
         </itemInstances>
         <name>region2</name>
