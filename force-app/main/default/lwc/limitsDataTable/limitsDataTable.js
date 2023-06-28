@@ -154,12 +154,12 @@ stopTime;
                initialWidth: 10,
            },
            { label: 'Limit Name', fieldName: 'name', sortable: "true"},
-           { label: 'Initial Count', fieldName: 'current', cellAttributes: { alignment: 'right' }, sortable: "true"  },
-           { label: 'New Count', fieldName: 'newCount' , cellAttributes: { alignment: 'right' }, sortable: "true"  },
-           { label: 'Difference', fieldName: 'diffrence' , cellAttributes: { alignment: 'right' }, sortable: "true"  },
-           { label: 'Org Limit', fieldName: 'limitForOrg', cellAttributes: { alignment: 'right' }, sortable: "true"},
-           { label: 'Percent Change', fieldName: 'percentChange',type:'percent', cellAttributes: { alignment: 'right' }, sortable: "true"},
-           { label: 'Percent Used', fieldName: 'percentUsed',type:'percent', cellAttributes: { alignment: 'right' }, sortable: "true"},
+           { label: 'Initial Count', fieldName: 'current', cellAttributes: { alignment: 'left' }, sortable: "true"  },
+           { label: 'New Count', fieldName: 'newCount' , cellAttributes: { alignment: 'left' }, sortable: "true"  },
+           { label: 'Difference', fieldName: 'diffrence' , cellAttributes: { alignment: 'left' }, sortable: "true"  },
+           { label: 'Org Limit', fieldName: 'limitForOrg', cellAttributes: { alignment: 'left' }, sortable: "true"},
+           { label: 'Percent Change', fieldName: 'percentChange',type:'percent', cellAttributes: { alignment: 'left' }, sortable: "true"},
+           { label: 'Percent Used', fieldName: 'percentUsed',type:'percent', cellAttributes: { alignment: 'left' }, sortable: "true"},
 
        ];
    }
