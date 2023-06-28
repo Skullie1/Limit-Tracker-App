@@ -10,9 +10,9 @@ const columns = [
         initialWidth: 10
     },
     { label: 'Limit Name', fieldName: 'name', sortable: "true"},
-    { label: 'Current Count', fieldName: 'current', cellAttributes: { alignment: 'right' } , sortable: "true" },
-    { label: 'Org Limit', fieldName: 'limitForOrg', cellAttributes: { alignment: 'right' } , sortable: "true"  },
-    { label: 'Percent Used', fieldName: 'percentUsed',type:'percent', cellAttributes: { alignment: 'right' }, sortable: "true"  },
+    { label: 'Current Count', fieldName: 'current', cellAttributes: { alignment: 'left' } , sortable: "true" },
+    { label: 'Org Limit', fieldName: 'limitForOrg', cellAttributes: { alignment: 'left' } , sortable: "true"  },
+    { label: 'Percent Used', fieldName: 'percentUsed',type:'percent', cellAttributes: { alignment: 'left' }, sortable: "true"  },
 ];
 export default class LimitsDataTable extends LightningElement {
 /**** Data Table attributes ****/
