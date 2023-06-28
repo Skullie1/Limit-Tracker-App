@@ -10,8 +10,8 @@ const columns = [
         initialWidth: 10
     },
     { label: 'Limit Name', fieldName: 'name', sortable: "true"},
-    { label: 'Current Count', fieldName: 'current', cellAttributes: { alignment: 'left' } , sortable: "true" },
-    { label: 'Org Limit', fieldName: 'limitForOrg', cellAttributes: { alignment: 'left' } , sortable: "true"  },
+    { label: 'Current Count', fieldName: 'current', type:'number', cellAttributes: { alignment: 'left' } , sortable: "true" },
+    { label: 'Org Limit', fieldName: 'limitForOrg', type:'number', cellAttributes: { alignment: 'left' } , sortable: "true"  },
     { label: 'Percent Used', fieldName: 'percentUsed',type:'percent', cellAttributes: { alignment: 'left' }, sortable: "true"  },
 ];
 export default class LimitsDataTable extends LightningElement {
@@ -154,10 +154,10 @@ stopTime;
                initialWidth: 10,
            },
            { label: 'Limit Name', fieldName: 'name', sortable: "true"},
-           { label: 'Initial Count', fieldName: 'current', cellAttributes: { alignment: 'left' }, sortable: "true"  },
-           { label: 'New Count', fieldName: 'newCount' , cellAttributes: { alignment: 'left' }, sortable: "true"  },
-           { label: 'Difference', fieldName: 'diffrence' , cellAttributes: { alignment: 'left' }, sortable: "true"  },
-           { label: 'Org Limit', fieldName: 'limitForOrg', cellAttributes: { alignment: 'left' }, sortable: "true"},
+           { label: 'Initial Count', fieldName: 'current', type:'number', cellAttributes: { alignment: 'left' }, sortable: "true"  },
+           { label: 'New Count', fieldName: 'newCount' , type:'number', cellAttributes: { alignment: 'left' }, sortable: "true"  },
+           { label: 'Difference', fieldName: 'diffrence' , type:'number', cellAttributes: { alignment: 'left' }, sortable: "true"  },
+           { label: 'Org Limit', fieldName: 'limitForOrg', type:'number', cellAttributes: { alignment: 'left' }, sortable: "true"},
            { label: 'Percent Change', fieldName: 'percentChange',type:'percent', cellAttributes: { alignment: 'left' }, sortable: "true"},
            { label: 'Percent Used', fieldName: 'percentUsed',type:'percent', cellAttributes: { alignment: 'left' }, sortable: "true"},
 
